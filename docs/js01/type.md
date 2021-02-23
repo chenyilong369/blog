@@ -4,14 +4,15 @@ js 类型是一个比较常见的考点
 
 ## 原始类型
 
-在 JS 中，存在着 6 种原始值，分别是：
+在 JS 中，存在着  种原始类型，分别是：
 
-- `boolean`
-- `null`
-- `undefined`
-- `number`
-- `string`
-- `symbol`
+- `Boolean`
+- `Null`
+- `Undefined`
+- `Number`
+- `String`
+- `Symbol`
+- `BigInt`
 
 原始类型存储的是值，没有函数可以调用。
 
@@ -163,8 +164,10 @@ a > -1 // true
 
 对于 `===` 来说，就是判断两者类型和值是否相同
 
-> `[] == ![]` 为何是 true？
->
-> 首先看右边，! 符号会将后面的变量强转为 boolean 值，由于 [] 转换为 boolean 是 true，故右边为 false，然后依照上方的第 5 条，将 false 转换为数字 0。
->
-> 然后看左边，满足第六条的条件，调用 valueOf，由于空数组调用 valueOf 是转化为 0 ，故返回值是 true。
+:::tip [] == ![] 为何是 true？
+
+首先看右边，! 符号会将后面的变量强转为 boolean 值，由于 [] 转换为 boolean 是 true，故右边为 false，然后依照上方的第 5 条，将 false 转换为数字 0。
+
+然后看左边，满足第六条的条件，调用 valueOf，由于空数组调用 valueOf 是转化为 0 ，故返回值是 true。
+
+:::

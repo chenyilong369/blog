@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/jschen/',
+  base: '/',
   dest: 'dist',
   title: 'jschen Blog',
   description: '前端人,前端魂',
@@ -14,8 +14,9 @@ module.exports = {
         children: [
           'js01/type',
           'js01/this',
-          'js01/closure',
-          'js01/prototype'
+          'js01/scope',
+          'js01/prototype',
+          'js01/callStack'
         ]
       },
     ]
