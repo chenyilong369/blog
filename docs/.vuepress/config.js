@@ -16,9 +16,18 @@ module.exports = {
           'js01/this',
           'js01/scope',
           'js01/prototype',
-          'js01/callStack'
+          'js01/callStack',
+          
         ]
       },
+      {
+        title: 'V8',
+        collapsable: false,
+        children: [
+          'V8/storeAndDelete',
+          'V8/Compiler'
+        ]
+      }
     ]
   }
 }
