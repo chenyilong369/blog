@@ -25,13 +25,13 @@ var timeoutID = setTimeout(code[, delay]);
 
 定义如下：
 
-```c++
+```cpp
 DelayedIncomingQueue delayed_incoming_queue;
 ```
 
 当通过 JS 调用 setTimeout 设置回调函数的时候，渲染进程将会创建一个回调任务，包含了回调函数 showName、当前发起时间、延迟执行时间：
 
-```c++
+```cpp
 struct DelayTask{
   int64 id；
   CallBackFunction cbf;
@@ -46,7 +46,7 @@ timerTask.delay_time = 200;//设置延迟执行时间
 
 创建好回调函数后，将其添加到延迟执行队列中。
 
-```c++
+```cpp
 delayed_incoming_queue.push(timerTask)；
 ```
 
@@ -54,7 +54,7 @@ delayed_incoming_queue.push(timerTask)；
 
 浏览器中有个函数是专门用来处理延迟执行任务的，暂且称为ProcessDelayTask.
 
-```c++
+```cpp
 void ProcessTimerTask(){  
   //从delayed_incoming_queue中取出已经到期的定时器任务  
   //依次执行这些任务  
@@ -153,7 +153,7 @@ setTimeout(cb, 0);
 
 在 Chrome 中，定时器被嵌套调用 5 次以上，系统会判断该函数方法被阻塞了，如果定时器的调用时间间隔小于 4 毫秒，那么浏览器会将每次调用的时间间隔设置为 4 毫秒。
 
-```c++
+```cpp
 static const int kMaxTimerNestingLevel = 5;  
 // Chromium uses a minimum timer interval of 4ms. We'd like to go  
 // lower; however, there are poorly coded websites out there which do  

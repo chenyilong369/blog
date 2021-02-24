@@ -13,7 +13,7 @@
 
 我这里用 c++ 来描述以上任务。
 
-``` c++
+``` cpp
 void MainThread(){
      int num1 = 55 + 41; //任务1
      int num2 = 20 / 4; //任务2
@@ -28,7 +28,7 @@ void MainThread(){
 
 那么我们对上面的写法做个改进：
 
-```c++
+```cpp
 int GetInput(){
     int input_number = 0;
     cout<<"请输入一个数:";
@@ -75,7 +75,7 @@ void MainThread(){
 
 那么我们继续尝试用代码来展现上述模型：
 
-```c++
+```cpp
 class TaskQueue{
   public:
   Task takeTask(); //取出队列头部的一个任务
@@ -106,7 +106,7 @@ void MainThread(){ // 主线程从队列中读取任务
 
 Chrome 是这样解决的，确定要退出当前页面时，页面主线程会设置一个退出标志的变量，在每次执行完一个任务时，判断是否有设置退出标志。如果设置了，那么就直接中断当前的所有任务，退出线程。
 
-```c++
+```cpp
 TaskQueue task_queue；
 void ProcessTask();
 bool keep_running = true;
