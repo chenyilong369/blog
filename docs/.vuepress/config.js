@@ -26,19 +26,27 @@ function getWebDesign() {
   return [
     {
       title: 'js基础',
-      collapsable: false,
       children: [
         'js01/type',
         'js01/this',
         'js01/scope',
         'js01/prototype',
         'js01/callStack',
-        
+        'js01/copy',
+        'js01/templete',
+        'js01/event',
+        'js01/generator',
+        'js01/promise',
+        'js01/promiseA+',
+        'js01/async',
+        'js01/writeCallApplyBind',
+        'js01/writeInstanceof',
+        'js01/writeNew',
+        'js01/writePromise',
       ]
     },
     {
       title: 'V8',
-      collapsable: false,
       children: [
         'V8/storeAndDelete',
         'V8/Compiler'
@@ -46,15 +54,15 @@ function getWebDesign() {
     },
     {
       title: '浏览器',
-      collapsable: false,
       children: [
         'internet/event',
-        'internet/setTimeout'
+        'internet/setTimeout',
+        'internet/cross',
+        'internet/storage'
       ]
     },
     {
       title: 'DOM',
-      collapsable: false,
       children: [
         'DOM/quickUseDOM'
       ]
@@ -66,7 +74,6 @@ function getAlgroithm() {
   return [
     {
       title: 'DP',
-      collapsable: false,
       children: [
         'dp/validity',
         'dp/base',

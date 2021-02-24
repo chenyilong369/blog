@@ -1,4 +1,4 @@
-## 原型
+# 原型
 
 ```js
 function Person() {
@@ -11,7 +11,7 @@ console.log(person.name) // Kevin
 
 Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person
 
-### prototype
+## prototype
 
 每个函数都有一个 prototype 属性，prototype是函数才会有的属性。
 每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型"继承"属性。
@@ -29,7 +29,7 @@ console.log(person2.name) // Kevin
 
 <img :src="$withBase('/prototype01.png')" alt="prototype01">
 
-### **proto**
+## **proto**
 
 每一个JavaScript对象(除了 null )都具有的一个属性，叫**proto**，这个属性会指向该对象的原型。
 
@@ -43,7 +43,7 @@ console.log(person.__proto__ === Person.prototype); // true
 
 <img :src="$withBase('/prototype02.png')" alt="prototype02">
 
-### constructor
+## constructor
 
 每个原型都有一个 constructor 属性指向关联的构造函数 (实例原型指向构造函数)。
 
@@ -62,7 +62,7 @@ console.log(Person.prototype.constructor == Person) // true
 console.log(Object.getPrototypeOf(person) === Person.prototype) // true
 ```
 
-### 原型链
+## 原型链
 
 <img :src="$withBase('/prototype04.png')" alt="prototype04">
 
