@@ -44,6 +44,21 @@ function getWebDesign() {
         'V8/Compiler'
       ]
     },
+    {
+      title: '浏览器',
+      collapsable: false,
+      children: [
+        'internet/event',
+        'internet/setTimeout'
+      ]
+    },
+    {
+      title: 'DOM',
+      collapsable: false,
+      children: [
+        'DOM/quickUseDOM'
+      ]
+    }
   ]
 }
 
