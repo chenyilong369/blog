@@ -9,15 +9,30 @@ module.exports = {
   themeConfig: {
     editLinks: false,
     docsDir: 'docs',
+    lastUpdated: 'Last Updated',
     smoothScroll: true,
     nav: [
-      {text: '前端', link: '/webDesign/'},
+      {
+        text: '前端',
+        ariaLabel: 'webDesign',
+        items: [
+          {text: 'CSS', link: '/CSS/'},
+          {text: 'JS', link: '/JS/'},
+          {text: 'HTTP', link: '/HTTP/'},
+          {text: '浏览器', link: '/internet/'},
+          {text: '性能', link: '/performance/'},
+        ]
+      },
       {text: '算法', link: '/algorithm/'},
       {text: 'Github', link: 'https://github.com/chenyilong369'}
     ],
     sidebar: {
-      '/webDesign/': getWebDesign(),
-      '/algorithm/': getAlgroithm()
+      '/CSS/': getCSS(),
+      '/JS/': getWebDesign(),
+      '/algorithm/': getAlgroithm(),
+      '/HTTP/': getHTTP(),
+      '/internet/': getInternet(),
+      '/performance/': getPerformance(),
     }
   }
 }
@@ -27,22 +42,26 @@ function getWebDesign() {
     {
       title: 'js基础',
       children: [
-        'js01/type',
-        'js01/this',
-        'js01/scope',
-        'js01/prototype',
-        'js01/callStack',
-        'js01/copy',
-        'js01/templete',
-        'js01/event',
-        'js01/generator',
-        'js01/promise',
-        'js01/promiseA+',
-        'js01/async',
-        'js01/writeCallApplyBind',
-        'js01/writeInstanceof',
-        'js01/writeNew',
-        'js01/writePromise',
+        'js/type',
+        'js/this',
+        'js/array',
+        'js/scope',
+        'js/prototype',
+        'js/callStack',
+        'js/extend',
+        'js/copy',
+        'js/templete',
+        'js/event',
+        'js/generator',
+        'js/promise',
+        'js/promiseA+',
+        'js/async',
+        'js/writeCallApplyBind',
+        'js/writeInstanceof',
+        'js/writeNew',
+        'js/writePromise',
+        'js/writeArray',
+        'js/writeJSON',
       ]
     },
     {
@@ -50,15 +69,6 @@ function getWebDesign() {
       children: [
         'V8/storeAndDelete',
         'V8/Compiler'
-      ]
-    },
-    {
-      title: '浏览器',
-      children: [
-        'internet/event',
-        'internet/setTimeout',
-        'internet/cross',
-        'internet/storage'
       ]
     },
     {
@@ -77,6 +87,62 @@ function getAlgroithm() {
       children: [
         'dp/validity',
         'dp/base',
+      ]
+    }
+  ]
+}
+
+function getHTTP() {
+  return [
+    {
+      title: 'HTTP',
+      
+      children: [
+        'whatHTTP',
+        'HTTP1',
+        'HTTP2'
+      ]
+    }
+  ]
+}
+
+function getInternet() {
+  return [
+    {
+      title: '浏览器',
+      children: [
+        'cross',
+        'event',
+        'setTimeout',
+        'XMLHttpRequest',
+        'storage',
+        'sameOrigin',
+        'XSS',
+      ]
+    }
+  ]
+}
+
+function getCSS() {
+  return [
+    {
+      title: 'CSS',
+      children: [
+        'box',
+        'internet',
+        'style',
+        'layout'
+      ]
+    }
+  ]
+}
+
+function getPerformance() {
+  return [
+    {
+      title: '性能',
+      children: [
+        'debounce',
       ]
     }
   ]

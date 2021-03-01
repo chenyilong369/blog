@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.png
 actionText: 开始学习 →
-actionLink: /webDesign/
+actionLink: /JS/
 features:
 - title: 个人笔记
   details: 个人下学习过程中记录下来的笔记，可以提供参考。
