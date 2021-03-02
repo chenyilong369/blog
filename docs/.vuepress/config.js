@@ -46,12 +46,13 @@ function getWebDesign() {
         'js/this',
         'js/array',
         'js/scope',
+        'js/curry',
         'js/prototype',
         'js/callStack',
         'js/extend',
         'js/copy',
         'js/templete',
-        'js/event',
+        'js/eventType',
         'js/generator',
         'js/promise',
         'js/promiseA+',
@@ -98,6 +99,7 @@ function getHTTP() {
       title: 'HTTP',
       
       children: [
+        'beforeHTTP',
         'whatHTTP',
         'HTTP1',
         'HTTP2'
@@ -113,11 +115,13 @@ function getInternet() {
       children: [
         'cross',
         'event',
+        'task',
         'setTimeout',
         'XMLHttpRequest',
         'storage',
         'sameOrigin',
         'XSS',
+        'navigation'
       ]
     }
   ]

@@ -51,7 +51,7 @@ console.log(a.user); //jschen
 var bar = new foo() 
 ```
 
-2. 函数是否通过 call、apply（显式绑定）或者硬绑定调用？如果是的话，this 绑定的是指定的对象。 
+2. 函数是否通过 call、apply（显式绑定）或者 bind 调用？如果是的话，this 绑定的是指定的对象。 
 
 ```js
 var bar = foo.call(obj2) 

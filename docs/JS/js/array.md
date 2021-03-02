@@ -436,3 +436,8 @@ function flatten(arr) {
 console.log(flatten(arr)); //  [1, 2, 3, 4，5]
 ```
 
+## 类数组转数组的方法
+
+- ... 运算符
+- Array.from
+- Array.prototype.slice.apply(arguments)
