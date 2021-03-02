@@ -1,8 +1,37 @@
-# JS 继承
+# JS 类的创建和继承
+
+在面向对象编程中，类（class）是对象（object）的模板，定义了同一组对象（又称"实例"）共有的属性和方法。JavaScript语言里是没有类的概念的，但是我们通过以下方法也可以模拟出类。
+
+## 利用 function 
+
+```js
+function Animal(name,age){
+    this.name=name;
+    this.age = age;
+    this.getName = function(){
+        return this.name;
+    }
+    this.setName = function(name){
+        this.name = name
+    }
+}
+```
+
+## 利用Object.create()方法构造：
+
+```js
+var Animal ={
+    name: '大毛',
+    getName: function(){
+        return this.name;
+    }
+}
+
+var ani = Object.create(Animal);
+ani.getName();//大毛
+```
 
 继承可以使得子类别具有父类的各种方法和属性，可以通过重写或覆盖父类某些属性和方法，使其获得与父类不同的属性和方法。
-
-那么 JS 怎么实现继承呢？
 
 ## 原型链继承
 

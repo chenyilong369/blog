@@ -23,6 +23,13 @@ module.exports = {
           {text: '性能', link: '/performance/'},
         ]
       },
+      {
+        text: '面试', 
+        ariaLabel: 'interface',
+        items: [
+          {text: '前端基础', link: '/interface/webDesignBase/'}
+        ]
+      },
       {text: '算法', link: '/algorithm/'},
       {text: 'Github', link: 'https://github.com/chenyilong369'}
     ],
@@ -33,6 +40,7 @@ module.exports = {
       '/HTTP/': getHTTP(),
       '/internet/': getInternet(),
       '/performance/': getPerformance(),
+      '/interface/webDesignBase/': getwebDesignBase()
     }
   }
 }
@@ -102,7 +110,8 @@ function getHTTP() {
         'beforeHTTP',
         'whatHTTP',
         'HTTP1',
-        'HTTP2'
+        'HTTP2',
+        'httpStorage'
       ]
     }
   ]
@@ -147,6 +156,17 @@ function getPerformance() {
       title: '性能',
       children: [
         'debounce',
+      ]
+    }
+  ]
+}
+
+function getwebDesignBase() {
+  return [
+    {
+      title: '面试',
+      children: [
+        'webDesignBase'
       ]
     }
   ]

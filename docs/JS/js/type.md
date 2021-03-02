@@ -26,7 +26,11 @@ js 类型是一个比较常见的考点
 
 当你创建了一个对象类型的时候，计算机会在内存中帮我们开辟一个空间来存放值，但是我们需要找到这个空间，这个空间会拥有一个地址（指针）。
 
+## 正确判断 null
 
+```js
+Object.prototype.toString.call(null) // "[object Null]" 
+```
 
 ## typeof vs instanceof
 
@@ -226,3 +230,4 @@ Symbol.for() 可以在全局访问 symbol。
 ### NAN 以及 typeof NAN
 
 NaN 指的是 Not a Number，表示非数字，typeof NaN = 'number' 
+
