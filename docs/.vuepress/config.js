@@ -21,6 +21,8 @@ module.exports = {
           {text: 'HTTP', link: '/HTTP/'},
           {text: '浏览器', link: '/internet/'},
           {text: '性能', link: '/performance/'},
+          {text: 'React', link: '/React/'},
+          {text: '技术杂谈', link: '/technology/'}
         ]
       },
       {
@@ -40,7 +42,9 @@ module.exports = {
       '/HTTP/': getHTTP(),
       '/internet/': getInternet(),
       '/performance/': getPerformance(),
-      '/interface/webDesignBase/': getwebDesignBase()
+      '/interface/webDesignBase/': getwebDesignBase(),
+      '/React/': getReact(),
+      '/technology/': getTechnology()
     }
   }
 }
@@ -167,6 +171,28 @@ function getwebDesignBase() {
       title: '面试',
       children: [
         'webDesignBase'
+      ]
+    }
+  ]
+}
+
+function getReact() {
+  return [
+    {
+      title: 'React',
+      children: [
+        'DVA'
+      ]
+    }
+  ]
+}
+
+function getTechnology() {
+  return [
+    {
+      title: '技术杂谈',
+      children: [
+        'PWA'
       ]
     }
   ]

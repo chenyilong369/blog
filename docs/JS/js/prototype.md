@@ -13,7 +13,7 @@ Person 就是一个构造函数，我们使用 new 创建了一个实例对象 p
 
 ## prototype
 
-每个函数都有一个 prototype 属性，prototype是函数才会有的属性。
+每个函数都有一个 prototype 属性，prototype是函数才会有的属性。这个属性指向函数的原型对象。
 每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型"继承"属性。
 
 ```js
@@ -31,7 +31,7 @@ console.log(person2.name) // Kevin
 
 ## **proto**
 
-每一个JavaScript对象(除了 null )都具有的一个属性，叫**proto**，这个属性会指向该对象的原型。
+每一个JavaScript对象(除了 null )都具有的一个属性，叫**proto**，这个属性会指向构造函数的原型。
 
 ```js
 function Person() {
@@ -42,6 +42,12 @@ console.log(person.__proto__ === Person.prototype); // true
 ```
 
 <img :src="$withBase('/prototype02.png')" alt="prototype02">
+
+::: 
+
+1. 实例的 `__proto__`指向构造函数的原型对象。
+2. 函数对象的`__proto__`指向 `Function.prototype`
+3. 原型对象的`__proto__`指向`Object.prototype`
 
 ## constructor
 
@@ -67,3 +73,8 @@ console.log(Object.getPrototypeOf(person) === Person.prototype) // true
 <img :src="$withBase('/prototype04.png')" alt="prototype04">
 
 JavaScript 默认并不会**复制**对象的属性，相反，JavaScript 只是在两个对象之间创建一个**关联**，这样，一个对象就可以通过委托访问另一个对象的属性和函数，所以与其叫继承，**委托**的说法反而更准确些。
+
+原型链本质是通过 \__proto__ 连接起来的，而不是 `prototype`。
+
+
+

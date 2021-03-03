@@ -94,3 +94,121 @@ Promise 的构造函数会调用 Promise 的参数 executor 函数。然后在 e
 
 在我手写的 Promise 中，可以看到采用了定时器来推迟 onResolve 的执行，不过使用定时器的效率并不是太高，好在我们有微任务，所以 Promise 又把这个定时器改造成了微任务了，这样既可以让 onResolve_ 延时被调用，又提升了代码的执行效率。
 
+## 语法
+
+用通俗的话语来理解，Promise 就像是一个定义列表，就像作者写书，读者们订阅，当作者新章节出来后，读者们都可以收到消息。如果发生了事故，读者们也能知道原因。
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  // executor（生产者代码）
+});
+```
+
+当 `new Promise` 被创建，executor 会自动运行。它包含最终应产出结果的生产者代码。
+
+- `resolve(value)` — 如果任务成功完成并带有结果 `value`。
+- `reject(error)` — 如果出现了 error，`error` 即为 error 对象。
+
+由 `new Promise` 构造器返回的 `promise` 对象具有以下内部属性：
+
+- `state` — 最初是 `"pending"`，然后在 `resolve` 被调用时变为 `"fulfilled"`，或者在 `reject` 被调用时变为 `"rejected"`。
+- `result` — 最初是 `undefined`，然后在 `resolve(value)` 被调用时变为 `value`，或者在 `reject(error)` 被调用时变为 `error`。
+
+### then
+
+```js
+promise.then(
+  function(result) { /* handle a successful result */ },
+  function(error) { /* handle an error */ }
+);
+```
+
+`.then` 的第一个参数是一个函数，该函数将在 promise resolved 后运行并接收结果。
+
+`.then` 的第二个参数也是一个函数，该函数将在 promise rejected 后运行并接收 error。
+
+### catch
+
+如果我们只对 error 感兴趣，那么我们可以使用 `null` 作为第一个参数：`.then(null, errorHandlingFunction)`。或者我们也可以使用 `.catch(errorHandlingFunction)`。
+
+### finally
+
+`.finally(f)` 调用与 `.then(f, f)` 类似，在某种意义上，`f` 总是在 promise 被 settled 时运行：即 promise 被 resolve 或 reject。
+
+## Promise API
+
+### Promise.all
+
+假设我们希望并行执行多个 promise，并等待所有 promise 都准备就绪。
+
+例如，并行下载几个 URL，并等到所有内容都下载完毕后再对它们进行处理。
+
+```js
+let promise = Promise.all([...promises...]);
+```
+
+`Promise.all` 接受一个 promise 数组作为参数（从技术上讲，它可以是任何可迭代的，但通常是一个数组）并返回一个新的 promise。
+
+当所有给定的 promise 都被 settled 时，新的 promise 才会 resolve，并且其结果数组将成为新的 promise 的结果。
+
+**如果任意一个 promise 被 reject，由 `Promise.all` 返回的 promise 就会立即 reject，并且带有的就是这个 error。**
+
+### Promise.allSettled
+
+`Promise.allSettled` 等待所有的 promise 都被 settle，无论结果如何。结果数组具有：
+
+- `{status:"fulfilled", value:result}` 对于成功的响应，
+- `{status:"rejected", reason:error}` 对于 error。
+
+```js
+let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://no-such-url'
+];
+
+Promise.allSettled(urls.map(url => fetch(url)))
+  .then(results => { // (*)
+    results.forEach((result, num) => {
+      if (result.status == "fulfilled") {
+        alert(`${urls[num]}: ${result.value.status}`);
+      }
+      if (result.status == "rejected") {
+        alert(`${urls[num]}: ${result.reason}`);
+      }
+    });
+  });
+```
+
+上面的 result 会是：
+
+```js
+[
+  {status: 'fulfilled', value: ...response...},
+  {status: 'fulfilled', value: ...response...},
+  {status: 'rejected', reason: ...error object...}
+]
+```
+
+### Promise.race
+
+与 `Promise.all` 类似，但只等待第一个 settled 的 promise 并获取其结果（或 error）。
+
+### Promise.resolve/reject
+
+`Promise.resolve(value)` 用结果 `value` 创建一个 resolved 的 promise。
+
+```js
+let promise = new Promise(resolve => resolve(value));
+```
+
+当一个函数被期望返回一个 promise 时，这个方法用于兼容性。（这里的兼容性是指，我们直接从缓存中获取了当前操作的结果 `value`，但是期望返回的是一个 promise，所以可以使用 `Promise.resolve(value)` 将 `value` “封装”进 promise，以满足期望返回一个 promise 的这个需求。）
+
+### Promise.reject
+
+`Promise.reject(error)` 用 `error` 创建一个 rejected 的 promise。
+
+```js
+let promise = new Promise((resolve, reject) => reject(error));
+```
+
