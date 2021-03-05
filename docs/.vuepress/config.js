@@ -29,7 +29,7 @@ module.exports = {
         text: '机器学习',
         ariaLabel: 'machineLearning',
         items: [
-          {text: '导数', link:'/machineLearning/math/'}
+          {text: '数学基础', link:'/machineLearning/math/'}
         ]
       },
       {
@@ -52,7 +52,7 @@ module.exports = {
       '/interface/webDesignBase/': getwebDesignBase(),
       '/React/': getReact(),
       '/technology/': getTechnology(),
-      '/machineLearning/math/': getMachineLearning()
+      '/machineLearning/math/': getMachineLearningMath()
     }
   }
 }
@@ -208,12 +208,12 @@ function getTechnology() {
   ]
 }
 
-function  getMachineLearning() {
+function  getMachineLearningMath() {
   return [
     {
-      title: '机器学习',
+      title: '数学基础',
       children: [
-        'math'
+        'daoshu'
       ]
     }
   ]

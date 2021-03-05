@@ -1,6 +1,6 @@
 # 导数
 
-设 $y = f(x)$ 在点 $x_0$ 的某个邻域内有定义，当自变量 x 在 $x_0$ 处有增量 $\Delta x$ ，$ (x_0 + \Delta x) $也在该邻域内时，相应地函数取得增量 $y=f(x_0+\Delta x)-f(x0))$ ；如果 $\Delta y$ 与 $\Delta x$ 之比当 $\Delta x \to 0$  时极限在，则称函数 $y=f(x)$ 在点 $x_0$ 处可导，并称这个极限为函数 $y=f(x)$ 在点 $x_0$ 处的导数，记作 $f’(x_0)$，即：
+设 $y = f(x)$ 在点 $x_0$ 的某个邻域内有定义，当自变量 x 在 $x_0$ 处有增量 $\Delta x$ ，$(x_0 + \Delta x)$ 也在该邻域内时，相应地函数取得增量 $y=f(x_0+\Delta x)-f(x0))$ ；如果 $\Delta y$ 与 $\Delta x$ 之比当 $\Delta x \to 0$  时极限在，则称函数 $y=f(x)$ 在点 $x_0$ 处可导，并称这个极限为函数 $y=f(x)$ 在点 $x_0$ 处的导数，记作 $f’(x_0)$，即：
 $$
 f'(x_0) = \underset{\Delta x \to 0}{lim} \frac{\Delta y}{\Delta x} = \underset{\Delta x \to 0}{lim}\frac{f(x_0 +\Delta x) - f(x_0)}{\Delta x}
 $$
