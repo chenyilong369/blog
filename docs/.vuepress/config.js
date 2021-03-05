@@ -21,7 +21,19 @@ module.exports = {
           {text: 'HTTP', link: '/HTTP/'},
           {text: '浏览器', link: '/internet/'},
           {text: '性能', link: '/performance/'},
-          {text: 'React', link: '/React/'},
+          {
+            text: 'React', 
+            items: [
+              {
+                text: 'React基础',
+                link: '/React/ReactBase/'
+              },
+              {
+                text: 'React扩展',
+                link: '/React/ReactExtend/'
+              }
+            ]
+          },
           {text: '技术杂谈', link: '/technology/'}
         ]
       },
@@ -39,7 +51,20 @@ module.exports = {
           {text: '前端基础', link: '/interface/webDesignBase/'}
         ]
       },
-      {text: '算法', link: '/algorithm/'},
+      {
+        text: '算法', 
+        ariaLabel: 'algorithm', 
+        items: [
+          {text: 'DP', link: '/algorithm/dp/'},
+        ]
+      },
+      {
+        text:'leetcode',
+        ariaLabel: 'leetcode',
+        items: [
+          {text: '2021', link: '/leetcode/2021/'}
+        ]
+      },
       {text: 'Github', link: 'https://github.com/chenyilong369'}
     ],
     sidebar: {
@@ -50,12 +75,17 @@ module.exports = {
       '/internet/': getInternet(),
       '/performance/': getPerformance(),
       '/interface/webDesignBase/': getwebDesignBase(),
-      '/React/': getReact(),
       '/technology/': getTechnology(),
-      '/machineLearning/math/': getMachineLearningMath()
+      '/machineLearning/math/': getMachineLearningMath(),
+      '/leetcode/2021/': getLeetcode2021(),
+      '/algorithm/dp/': getDP(),
+      '/React/ReactBase/': getReactBase(),
+      '/React/ReactExtend/': getReactExtend()
     }
   }
 }
+
+
 
 function getWebDesign() {
   return [
@@ -186,16 +216,7 @@ function getwebDesignBase() {
   ]
 }
 
-function getReact() {
-  return [
-    {
-      title: 'React',
-      children: [
-        'DVA'
-      ]
-    }
-  ]
-}
+
 
 function getTechnology() {
   return [
@@ -214,6 +235,53 @@ function  getMachineLearningMath() {
       title: '数学基础',
       children: [
         'daoshu'
+      ]
+    }
+  ]
+}
+
+function getLeetcode2021() {
+  return [
+    {
+      title: '2021-03',
+      children:[
+        '03/03_05'
+      ]
+    }
+  ]
+}
+
+function getDP() {
+  return [
+    {
+      title: 'DP',
+      children: [
+        'base',
+        'validity'
+      ]
+    }
+  ]
+}
+
+function getReactExtend() {
+  return [
+    {
+      title: 'React',
+      children: [
+        'DVA'
+      ]
+    }
+  ]
+}
+
+function getReactBase() {
+  return [
+    {
+      title: 'React 基础',
+      children: [
+        'JSX',
+        'itemRender',
+        'props'
       ]
     }
   ]
