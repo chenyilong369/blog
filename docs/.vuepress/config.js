@@ -26,6 +26,13 @@ module.exports = {
         ]
       },
       {
+        text: '机器学习',
+        ariaLabel: 'machineLearning',
+        items: [
+          {text: '导数', link:'/machineLearning/math/'}
+        ]
+      },
+      {
         text: '面试', 
         ariaLabel: 'interface',
         items: [
@@ -44,7 +51,8 @@ module.exports = {
       '/performance/': getPerformance(),
       '/interface/webDesignBase/': getwebDesignBase(),
       '/React/': getReact(),
-      '/technology/': getTechnology()
+      '/technology/': getTechnology(),
+      '/machineLearning/math/': getMachineLearning()
     }
   }
 }
@@ -115,6 +123,7 @@ function getHTTP() {
         'whatHTTP',
         'HTTP1',
         'HTTP2',
+        'HTTPS',
         'httpStorage'
       ]
     }
@@ -134,6 +143,7 @@ function getInternet() {
         'storage',
         'sameOrigin',
         'XSS',
+        'CSRF',
         'navigation'
       ]
     }
@@ -193,6 +203,17 @@ function getTechnology() {
       title: '技术杂谈',
       children: [
         'PWA'
+      ]
+    }
+  ]
+}
+
+function  getMachineLearning() {
+  return [
+    {
+      title: '机器学习',
+      children: [
+        'math'
       ]
     }
   ]
