@@ -284,3 +284,424 @@
 - 不同
   - 圣杯布局：父节点声明`padding`为左右列留出空位，将左右列固定在空位上
   - 双飞翼布局：中间列插入子节点并声明`margin`为左右列让出空位，将左右列固定在空位上
+
+### 圣杯布局(**float + margin-left/right + padding-left/right**)
+
+```html
+<div class="grail-layout">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center"></div>
+</div>
+```
+
+```css
+.grail-layout {
+    padding: 0 100px;
+    width: 400px;
+    height: 400px;
+}
+
+.grail-layout .left {
+    float: left;
+    margin-left: -100px;
+    width: 100px;
+    height: 100%;
+    background-color: #f66;
+}
+
+.grail-layout .right {
+    float: right;
+    margin-right: -100px;
+    width: 100px;
+    height: 100%;
+    background-color: #66f;
+}
+
+.grail-layout .left {
+	height: 100%;
+    background-color: #3c9;
+}
+```
+
+### 双飞翼布局**float + margin-left/right**
+
+```html
+<div class="grail-layout">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center">
+        <div></div>
+    </div>
+</div>
+```
+
+```css
+.grail-layout {
+    width: 400px;
+    height: 400px;
+}
+
+.grail-layout .left {
+    float: left;
+    width: 100px;
+    height: 100%;
+    background-color: #f66;
+}
+
+.grail-layout .right {
+    float: right;
+    width: 100px;
+    height: 100%;
+    background-color: #66f;
+}
+
+.grail-layout .left {
+    margin: 0 100px;
+	height: 100%;
+    background-color: #3c9;
+}
+```
+
+### 圣杯布局/双飞翼布局**flex**
+
+```html
+<div class="grail-layout">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div>
+</div>
+```
+
+```scss
+.grail-layout {
+    display: flex;
+    width: 400px;
+    height: 400px;
+}
+
+.grail-layout .left {
+    width: 100px;
+    background-color: #f66;
+}
+
+.grail-layout .center {
+    flex: 1;
+    background-color: #3c9;
+}
+
+.grail-layout .right {
+    width: 100px;
+    background-color: #66f;
+}
+```
+
+## 均分布局
+
+经典的`均分布局`由多列组成，其特点为`每列宽度相等`和`每列高度固定且相等`。
+
+```html
+<div class="average-layout">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+</div>
+```
+
+```css
+.one {
+    background-color: #f66;
+}
+.two {
+    background-color: #66f;
+}
+.three {
+    background-color: #f90;
+}
+.four {
+    background-color: #09f;
+}
+```
+
+### **float + width**
+
+每列宽度声明为相等的百分比，若有4列则声明`width:25%`。N列就用公式`100 / n`求出最终百分比宽度，记得保留2位小数，还可用`width:calc(100% / n)`自动计算。
+
+```css
+.average-layout {
+    width: 400px;
+    height: 400px;
+}
+
+.average-layout  div {
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+```
+
+### **column**
+
+```css
+.average-layout {
+    column-count: 4;
+    column-gap: 0;
+    width: 400px;
+    height: 400px;
+}
+
+.average-layout  div {
+    height: 100%;
+}
+```
+
+### **flex**
+
+节点声明`display:flex`后，生成的`FFC容器`里所有子节点的高度都相等，因为容器的`align-items`默认为`stretch`，所有子节点将占满整个容器的高度。每列声明`flex:1`自适应宽度。
+
+```css
+.average-layout {
+    display: flex;
+    width: 400px;
+    height: 400px;
+}
+
+.average-layout div {
+    flex: 1;
+}
+```
+
+## 居中布局
+
+### 水平居中
+
+- margin:0 auto + width:fit-content：全部元素
+
+- 块级元素 + margin:0 auto + width：块级元素
+
+  - 若节点不是块级元素需声明display:block
+  - 若节点宽度已隐式声明则无需显式声明width
+
+- 行内元素 + text-aligin:center：行内元素
+  
+  - 父节点上声明text-align
+  - 若节点不是行内元素需声明display:inline/inline-block
+
+- position + left/right + margin-left/right + width：全部元素
+
+- position + left/right + transform:translateX(-50%)：全部元素
+
+- display:flex + justify-content:center：全部元素
+  
+  - 父节点上声明display和justify-content
+  
+### 垂直居中
+- 块级元素 + padding-top/bottom：块级元素
+
+  - 父节点高度未声明或自适应
+  - 若节点不是块级元素需声明display:block
+
+- 行内元素 + line-height：行内元素
+
+  - 父节点上声明line-height
+  - 若节点不是行内元素需声明display:inline/inline-block
+
+- display:table + display:table-cell + vertical-align:middle：全部元素
+
+  - 父节点上声明display:table
+
+- display:table-cell + vertical-align:middle：全部元素
+
+  - 父节点上声明display和vertical-align
+
+- position + top/bottom + margin-top/bottom + height：全部元素
+
+- position + top/bottom + transform:translateY(-50%)：全部元素
+
+- display:flex + align-items:center：全部元素
+  
+  - 父节点上声明display和align-items
+
+- display:flex + margin:auto 0：全部元素
+  
+  - 父节点上声明display
+
+### 水平垂直居中布局
+
+```html
+<div class="center-layout">
+    <div></div>
+</div>
+```
+
+```css
+.center-layout {
+    width: 400px;
+    height: 400px;
+    background-color: #f66;
+}
+
+.center-layout div {
+    width: 100px;
+    height: 100px;
+    background-color: #66f;
+}
+```
+
+#### **display:inline-block**
+
+<div\> 声明`display:inline-block`将其变成行内块级元素，那么可用`text-align`和`line-height`声明水平垂直居中了，但是行内块级元素与匿名行内盒的基线对齐存在很大差异，所以需声明`vertical-align:middle`将其调整到垂直居中的位置，不过这也是近似垂直居中，父节点最后还需声明`font-size:0`消除该差异。
+
+```css
+.center-layout {
+	line-height: 400px;
+    text-align: center;
+    font-size: 0;
+}
+
+.center-layout div {
+	display: inline-block;
+    vertical-align: middle;
+}
+```
+
+#### **display:table-cell**
+
+父节点声明`display:table-cell`模拟`表格布局`的垂直居中；子节点声明`margin:0 auto`使其水平居中。
+
+```css
+.center-layout {
+	display: table-cell;
+    vertical-align: middle;
+}
+
+.center-layout div {
+	margin: 0 auto;
+}
+```
+
+#### **position**
+
+使用`margin负值`将节点拉回最中间，所以必须已知宽高才能计算`margin负值`，通常是`margin-left`和`margin-top`，可连写成`margin:-(height/2) 0 0 -(width/2)`。（可以用 CSS3 中的 `transform:translate(-50%,-50%)` 代替）
+
+```css
+.center-layout {
+	position: relative;
+}
+
+.center-layout div {
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -50px 0 0 -50px;
+    // 也可以写成transform:translate(-50%,-50%)
+}
+```
+
+#### flex
+
+```css
+.center-layout {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+也可以这么写：
+
+```css
+.center-layout {
+	display: flex;
+}
+.center-layout div{
+    margin: auto;
+}
+```
+
+## 文字布局
+
+### 文本环绕
+
+利用`float`使节点脱流的原理实现。
+
+```html
+<div class="text-wrapping">
+    <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg"> 
+    <!--自己可以用自己的-->
+    XXXXX......(很多个X)
+</div>
+```
+
+```css
+.text-wrapping {
+    overflow: hidden;
+    width: 400px;
+    height: 300px;
+    font-size: 20px;
+    color: #f66;
+    word-break: break-all; // 允许在单词内换行。
+}
+
+.text-wrapping img {
+    float:left;
+    margin: 10px;
+    height: 200x;
+}
+```
+
+### 文字溢出
+
+#### 单行文字溢出**overflow + text-overflow**
+
+```css
+.s-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+```
+
+#### 多行文字溢出**flex + overflow + text-overflow**
+
+使用`旧版弹性布局`模拟`多行文字溢出`，只能在`Webkit内核`中使用，局限性太大了。
+
+- `display:-webkit-box`：将容器作为弹性伸缩盒模型
+- `-webkit-box-orient`：弹性伸缩盒模型子节点的排列方式
+- `-webkit-line-clamp`：限制容器最多显示多少行文本
+
+```css
+.m-ellipsis {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+```
+
+于是我们来想想模拟溢出省略号。
+
+使用伪元素`::after`胜任这个工作了。结合`max-height`和`line-height`计算最大显示行数，通过定位布局把`省略号`定位到整段文字的右下角，使用`linear-gradient()`调整渐变背景颜色稍微润色下省略号使其看上去自然一些。
+
+```css
+.m-ellipsis {
+    overflow: hidden;
+    position: relative;
+    max-height: 120px;
+    line-height: 40px;
+}
+
+.m-ellipsis::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-left: 20px;
+    background: linear-gradient(to right, transparent, #fff 50%);
+    content: "...";
+}
+```
+
+但是单行文字也会出现省略号，只能结合JS额外处理了。（判断是否只有一行）。
