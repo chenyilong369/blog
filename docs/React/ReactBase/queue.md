@@ -2,7 +2,7 @@
 
 首先，我们来介绍一个重要的生命周期方法 `render` 
 
-```react
+```js
 class LifeCycle extends React.Component {
   render() {
     console.log("render方法执行");
@@ -221,6 +221,8 @@ React 组件会根据 `shouldComponentUpdate` 的返回值，来决定是否执�
 
 #### Unmounting 阶段
 
+
+
 <img :src="$withBase('/react/reactqueue06.png')" alt="reactqueue06">
 
 组件的销毁阶段只涉及一个生命周期。
@@ -367,6 +369,8 @@ static getDerivedStateFromProps(props, state)
 
 ### Updating 阶段
 
+
+
 <img :src="$withBase('/react/reactqueue10.png')" alt="reactqueue10">
 
 React 16.4 对生命周期流程进行了“微调”，其实就调在了更新过程的	`getDerivedStateFromProps` 这个生命周期上。
@@ -394,6 +398,8 @@ React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异
  **React 16 在强制推行“只用 getDerivedStateFromProps 来完成 props 到 state 的映射”这一最佳实践**。当然也是在为新的 Fiber 架构铺路。
 
 #### getSnapshotBeforeUpdate
+
+
 
 <img :src="$withBase('/react/reactqueue12.png')" alt="reactqueue12">
 
