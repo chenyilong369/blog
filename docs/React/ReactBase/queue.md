@@ -162,8 +162,6 @@ ReactDOM.render(<LifeCycleContainer />, document.getElementById("root"));
 
 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成所谓的“首次渲染”。
 
-<img :src="$withBase('/react/reactqueue03.png')" alt="reactqueue03">
-
 首先来看 constructor 方法，该方法仅仅在挂载的时候被调用一次，我们可以在该方法中对 `this.state` 进行初始化：
 
 ```js
@@ -185,7 +183,7 @@ constructor(props) {
 
 ### Updating 阶段
 
-<img :src="$withBase('/react/reactqueue04.png')" alt="reactqueue04">
+<img :src="$withBase('/react/reactqueue03.png')" alt="reactqueue03">
 
 组件的更新分为两种：一种是由父组件更新触发的更新；另一种是组件自身调用自己的 `setState` 触发的更新。
 
@@ -219,11 +217,11 @@ render 方法由于伴随着对虚拟 DOM 的构建和对比，过程可以说�
 
 React 组件会根据 `shouldComponentUpdate` 的返回值，来决定是否执行该方法之后的生命周期，进而决定是否对组件进行**re-render**（重渲染）。`shouldComponentUpdate` 的默认值为 true。
 
-#### Unmounting 阶段
+### Unmounting 阶段
 
 
 
-<img :src="$withBase('/react/reactqueue06.png')" alt="reactqueue06">
+<img :src="$withBase('/react/reactqueue04.png')" alt="reactqueue04">
 
 组件的销毁阶段只涉及一个生命周期。
 
