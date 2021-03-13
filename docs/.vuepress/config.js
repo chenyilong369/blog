@@ -48,7 +48,8 @@ module.exports = {
         text: '面试', 
         ariaLabel: 'interface',
         items: [
-          {text: '前端基础', link: '/interface/webDesignBase/'}
+          {text: '前端基础', link: '/interface/webDesignBase/'},
+          {text: '面试经历', link: '/interface/interfaceEnd/'}
         ]
       },
       {
@@ -75,6 +76,7 @@ module.exports = {
       '/internet/': getInternet(),
       '/performance/': getPerformance(),
       '/interface/webDesignBase/': getwebDesignBase(),
+      '/interface/interfaceEnd/': getZijie(),
       '/technology/': getTechnology(),
       '/machineLearning/math/': getMachineLearningMath(),
       '/leetcode/2021/': getLeetcode2021(),
@@ -284,7 +286,19 @@ function getReactBase() {
       children: [
         'JSX',
         'itemRender',
-        'props'
+        'props',
+        'queue'
+      ]
+    }
+  ]
+}
+
+function getZijie(){
+  return [
+    {
+      title: '面试经历',
+      children: [
+        'zijie'
       ]
     }
   ]
