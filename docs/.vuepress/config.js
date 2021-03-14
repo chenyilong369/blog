@@ -287,7 +287,9 @@ function getReactBase() {
         'JSX',
         'itemRender',
         'props',
-        'queue'
+        'queue',
+        'hooks',
+        'VirtualDOM'
       ]
     }
   ]
