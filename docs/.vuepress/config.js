@@ -21,6 +21,7 @@ module.exports = {
           {text: 'HTTP', link: '/HTTP/'},
           {text: '浏览器', link: '/internet/'},
           {text: '性能', link: '/performance/'},
+          {text: '技术杂谈', link: '/technology/'},
           {
             text: 'React', 
             items: [
@@ -34,7 +35,15 @@ module.exports = {
               }
             ]
           },
-          {text: '技术杂谈', link: '/technology/'}
+          {
+            text: 'Vue',
+            items: [
+              {
+                text: 'Vue基础',
+                link: '/Vue/VueBase/'
+              }
+            ]
+          }
         ]
       },
       {
@@ -82,7 +91,8 @@ module.exports = {
       '/leetcode/2021/': getLeetcode2021(),
       '/algorithm/dp/': getDP(),
       '/React/ReactBase/': getReactBase(),
-      '/React/ReactExtend/': getReactExtend()
+      '/React/ReactExtend/': getReactExtend(),
+      '/Vue/VueBase/': getVueBase()
     }
   }
 }
@@ -289,7 +299,10 @@ function getReactBase() {
         'props',
         'queue',
         'hooks',
-        'VirtualDOM'
+        'VirtualDOM',
+        'stack',
+        'setState',
+        'Fiber'
       ]
     }
   ]
@@ -301,6 +314,17 @@ function getZijie(){
       title: '面试经历',
       children: [
         'zijie'
+      ]
+    }
+  ]
+}
+
+function getVueBase() {
+  return [
+    {
+      title: 'Vue基础',
+      children: [
+        'xiangying'
       ]
     }
   ]
