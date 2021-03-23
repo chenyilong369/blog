@@ -281,9 +281,10 @@ function getDP() {
 function getReactExtend() {
   return [
     {
-      title: 'React',
+      title: 'React扩展',
       children: [
-        'DVA'
+        'DVA',
+        'Redux'
       ]
     }
   ]
