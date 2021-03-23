@@ -2,6 +2,25 @@
 
 前面也提到过微任务的诞生，但是这两者有什么区别呢？
 
+这个就像去银行办业务一样，先要取号进行排号。
+一般上边都会印着类似：“您的号码为XX，前边还有XX人。”之类的字样。
+
+因为柜员同时职能处理一个来办理业务的客户，这时每一个来办理业务的人就可以认为是银行柜员的一个宏任务来存在的，当柜员处理完当前客户的问题以后，选择接待下一位，广播报号，也就是下一个宏任务的开始。
+
+ 所以多个宏任务合在一起就可以认为说有一个任务队列在这，里边是当前银行中所有排号的客户。
+
+**任务队列中的都是已经完成的异步操作，而不是说注册一个异步任务就会被放在这个任务队列中，就像在银行中排号，如果叫到你的时候你不在，那么你当前的号牌就作废了，柜员会选择直接跳过进行下一个客户的业务处理，等你回来以后还需要重新取号。**
+
+而且一个宏任务在执行的过程中，是可以添加一些微任务的，就像在柜台办理业务，你前边的一位老大爷可能在存款，在存款这个业务办理完以后，柜员会问老大爷还有没有其他需要办理的业务，老大爷告诉柜员说，要办一些理财的业务，这时候柜员肯定不能告诉老大爷说：“您再上后边取个号去，重新排队”。
+
+所以本来快轮到你来办理业务，会因为老大爷临时添加的“**理财业务**”而往后推。
+
+也许老大爷在办完理财以后还想 **再办一个信用卡**？或者 **再买点儿纪念币**？
+
+无论是什么需求，只要是柜员能够帮她办理的，都会在处理你的业务之前来做这些事情，这些都可以认为是微任务。
+
+**在当前的微任务没有执行完成时，是不会执行下一个宏任务的。**
+
 ## 宏任务
 
 页面中的大部分任务都是在主线程上执行的，为了协调这些任务有条不紊地在主线程上执行，页面进程引入了消息队列和事件循环机制，渲染进程内部会维护多个消息队列，比如延迟执行队列和普通的消息队列。然后主线程采用一个 for 循环，不断地从这些任务队列中取出任务并执行任务。我们把这些**消息队列**中的任务称为宏任务。
@@ -44,3 +63,63 @@
 - 微任务和宏任务是绑定的，每个宏任务在执行时，会创建自己的微任务队列。
 - 微任务的执行时长会影响到当前宏任务的时长。
 - 在一个宏任务中，分别创建一个用于回调的宏任务和微任务，无论什么情况下，微任务都早于宏任务执行。
+
+## 实例
+
+```html
+<style>
+  #outer {
+    padding: 20px;
+    background: #616161;
+  }
+
+  #inner {
+    width: 100px;
+    height: 100px;
+    background: #757575;
+  }
+</style>
+<div id="outer">
+  <div id="inner"></div>
+</div>
+```
+
+```js
+const $inner = document.querySelector('#inner')
+const $outer = document.querySelector('#outer')
+
+function handler () {
+  console.log('click') // 直接输出
+
+  Promise.resolve().then(_ => console.log('promise')) // 注册微任务
+
+  setTimeout(_ => console.log('timeout')) // 注册宏任务
+
+  requestAnimationFrame(_ => console.log('animationFrame')) // 注册宏任务
+
+  $outer.setAttribute('data-random', Math.random()) // DOM属性修改，触发微任务
+}
+
+new MutationObserver(_ => {
+  console.log('observer')
+}).observe($outer, {
+  attributes: true
+})
+
+$inner.addEventListener('click', handler)
+$outer.addEventListener('click', handler)
+```
+
+其执行顺序是：`click` -> `promise` -> `observer` -> `click` -> `promise` -> `observer` -> `animationFrame` -> `animationFrame` -> `timeout` -> `timeout`。
+
+
+因为一次`I/O`创建了一个宏任务，也就是说在这次任务中会去触发`handler`。
+
+按照代码中的注释，在同步的代码已经执行完以后，这时就会去查看是否有微任务可以执行，然后发现了`Promise`和`MutationObserver`两个微任务，遂执行之。
+
+因为`click`事件会冒泡，所以对应的这次`I/O`会触发两次`handler`函数(*一次在`inner`、一次在`outer`*)，所以会优先执行冒泡的事件(*早于其他的宏任务*)，也就是说会重复上述的逻辑。
+
+在执行完同步代码与微任务以后，这时继续向后查找有木有宏任务。
+
+需要注意的一点是，因为我们触发了`setAttribute`，实际上修改了`DOM`的属性，这会导致页面的重绘，而这个`set`的操作是同步执行的，也就是说`requestAnimationFrame`的回调会早于`setTimeout`所执行。
+
