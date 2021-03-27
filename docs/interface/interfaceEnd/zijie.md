@@ -137,3 +137,37 @@ function promiseAll(promises) {
 
 使用browserHistory时，从 / 到 /user/liuna, 浏览器会向server发送request，所以server要做特殊请求，比如用的 express 的话，你需要 handle 所有的路由 `app.get('*', (req, res) => { ... })`，使用了 nginx 的话，nginx也要做相应的配置。
 
+## 2021-03-21 字节四面
+
+### 说说你的项目（这里讨论我项目讨论了15分钟）
+
+### Ajax 超时重传（3次）
+
+这个目前没有找到解决办法
+
+### url hash的底层原理
+
+1. hash 路由：监听 url 中 hash 的变化，然后渲染不同的内容，这种路由不向服务器发送请求，不需要服务端的支持；
+2. history 路由：监听 url 中的路径变化，需要客户端和服务端共同的支持；
+
+> 主要实现以下几个简单的功能：
+>
+> 1. 监听路由的变化，当路由发生变化时，可以作出动作；
+> 2. 可以前进或者后退；
+> 3. 可以配置路由；
+
+#### hash路由
+
+当页面中的 hash 发生变化时，会触发`hashchange`事件，因此我们可以监听这个事件，来判断路由是否发生了变化。
+
+```js
+window.addEventListener(
+    'hashchange',
+    function (event) {
+        const oldURL = event.oldURL; // 上一个URL
+        const newURL = event.newURL; // 当前的URL
+        console.log(newURL, oldURL);
+    },
+    false
+);
+```

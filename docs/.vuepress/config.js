@@ -18,6 +18,7 @@ module.exports = {
         items: [
           {text: 'CSS', link: '/CSS/'},
           {text: 'JS', link: '/JS/'},
+          {text: 'TS', link: '/TS/'},
           {text: 'HTTP', link: '/HTTP/'},
           {text: '浏览器', link: '/internet/'},
           {text: '性能', link: '/performance/'},
@@ -80,6 +81,7 @@ module.exports = {
     sidebar: {
       '/CSS/': getCSS(),
       '/JS/': getWebDesign(),
+      '/TS/': getTS(),
       '/algorithm/': getAlgroithm(),
       '/HTTP/': getHTTP(),
       '/internet/': getInternet(),
@@ -187,7 +189,8 @@ function getInternet() {
         'XSS',
         'CSRF',
         'navigation',
-        'requestAnimationFrame'
+        'requestAnimationFrame',
+        'Ajax'
       ]
     }
   ]
@@ -238,7 +241,8 @@ function getTechnology() {
     {
       title: '技术杂谈',
       children: [
-        'PWA'
+        'PWA',
+        'login'
       ]
     }
   ]
@@ -326,6 +330,19 @@ function getVueBase() {
       title: 'Vue基础',
       children: [
         'xiangying'
+      ]
+    }
+  ]
+}
+
+function getTS() {
+  return [
+    {
+      title: 'TS',
+      children: [
+        'type',
+        'interface',
+        'class'
       ]
     }
   ]
