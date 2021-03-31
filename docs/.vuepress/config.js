@@ -288,7 +288,8 @@ function getReactExtend() {
       title: 'React扩展',
       children: [
         'DVA',
-        'Redux'
+        'Redux',
+        'ReactRouter'
       ]
     }
   ]
