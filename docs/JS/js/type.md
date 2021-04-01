@@ -18,7 +18,17 @@ js 类型是一个比较常见的考点
 
 那么有个问题，为什么`'1'.toString()`是正确的呢？
 
-原因在于在这种情况下，`'1'`已经被强转成了`String`类型。
+这个语句其实做了以下事情：
+
+- 创建 Object 类实例。为什么不是 String ？原因在于其中可能包含 Symbol 和 BigInt。对他们进行 new 调用都会报错。
+- 调用实例方法
+- 执行完这个方法并且立即销毁这个实例。
+
+```js
+let s = new Object('1')
+s.toString()
+s = null
+```
 
 ## 对象类型
 
@@ -76,6 +86,24 @@ class PrimitiveString {
 }
 console.log('hello world' instanceof PrimitiveString) // true
 ```
+
+## Object.is 与 === 的区别
+
+具体来说就是 +0，-0以及 NaN，NaN的区别。
+
+```js
+function is(x, y) {
+    if(x === y) {
+        // 1 / +0 为正无穷，1 / -0 为负无穷
+        return x !== 0 || y !== 0 || 1 / x === 1 / y 
+    } else {
+        // 两个都是 NaN 返回 true
+        return x !== x && y !== y
+    }
+}
+```
+
+
 
 ## 类型转换
 
@@ -229,4 +257,17 @@ Symbol.for() 可以在全局访问 symbol。
 ### NAN 以及 typeof NAN
 
 NaN 指的是 Not a Number，表示非数字，typeof NaN = 'number' 
+
+### 如何让if(a == 1 && a == 2)条件成立？
+
+```js
+var a = {
+  value: 0,
+  valueOf: function() {
+    this.value++;
+    return this.value;
+  }
+};
+console.log(a == 1 && a == 2);//true
+```
 

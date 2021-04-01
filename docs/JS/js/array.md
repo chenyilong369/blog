@@ -208,10 +208,15 @@ var isExist = array.some(function(value, index, array){
 });
 console.log(isExist); // true 
 // map 方法
+// 参数:接受两个参数，一个是回调函数，一个是回调函数的this值(可选)。其中，回调函数被默认传入三个值，依次为当前元素、当前索引、整个数组。
+// 创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果
+// 对原来的数组没有影响
 var array = [18, 9, 10, 35, 80];
 array.map(item => item + 1);
 console.log(array);  // [19, 10, 11, 36, 81]
 // filter 方法
+// 参数: 一个函数参数。这个函数接受一个默认参数，就是当前元素。这个作为参数的函数返回值为一个布尔类型，决定元素是否保留。
+// filter方法返回值为一个新的数组，这个数组里面包含参数里面所有被保留的项。
 var array = [18, 9, 10, 35, 80];
 var array2 = array.filter(function(value, index, array){
   return value > 20;
@@ -265,6 +270,8 @@ reduce 方法需要重点关注，先看下 reduce 的两个参数：
 2. currentValue（当前正在处理的数组元素）
 3. currentIndex（当前正在处理的数组元素下标）
 4. array（调用 reduce() 方法的数组）
+
+如果不传默认值会自动以第一个元素为初始值，然后从第二个元素开始依次累计。
 
 然后是 initialValue（可选的初始值，作为第一次调用回调函数时传给 previousValue 的值）。
 
@@ -439,5 +446,92 @@ console.log(flatten(arr)); //  [1, 2, 3, 4，5]
 ## 类数组转数组的方法
 
 - ... 运算符
+
+```js
+function sum(a, b) {
+  let args = [...arguments];
+  console.log(args.reduce((sum, cur) => sum + cur));//args可以调用数组原生的方法啦
+}
+sum(1, 2);//3
+```
+
 - Array.from
-- Array.prototype.slice.apply(arguments)
+
+```js
+function sum(a, b) {
+  let args = Array.from(arguments);
+  console.log(args.reduce((sum, cur) => sum + cur));//args可以调用数组原生的方法啦
+}
+sum(1, 2);//3
+```
+
+- Array.prototype.slice.call(arguments)
+
+```js
+function sum(a, b) {
+  let args = Array.prototype.slice.call(arguments);
+  console.log(args.reduce((sum, cur) => sum + cur));//args可以调用数组原生的方法啦
+}
+sum(1, 2);//3
+```
+
+- 利用concat+apply
+
+```js
+function sum(a, b) {
+  let args = Array.prototype.concat.apply([], arguments);//apply方法会把第二个参数展开
+  console.log(args.reduce((sum, cur) => sum + cur));//args可以调用数组原生的方法啦
+}
+sum(1, 2);//3
+```
+
+## 一些面试题
+
+### 判断数组中是否包含某个值
+
+#### array.indexOf
+
+> 此方法判断数组中是否存在某个值，如果存在，则返回数组元素的下标，否则返回-1。
+
+```js
+var arr=[1,2,3,4];
+var index=arr.indexOf(3);
+console.log(index);
+```
+
+#### array.includes(searcElement[,fromIndex])
+
+> 此方法判断数组中是否存在某个值，如果存在返回true，否则返回false。
+
+```js
+var arr=[1,2,3,4];
+if(arr.includes(3))
+    console.log("存在");
+else
+    console.log("不存在");
+```
+
+#### array.find(callback[,thisArg])
+
+> 返回数组中满足条件的**第一个元素的值**，如果没有，返回undefined
+
+```js
+var arr=[1,2,3,4];
+var result = arr.find(item =>{
+    return item > 3
+});
+console.log(result);
+```
+
+#### array.findIndex(callback[,thisArg])
+
+> 返回数组中满足条件的第一个元素的下标，如果没有找到，返回`-1`
+
+```js
+var arr=[1,2,3,4];
+var result = arr.findIndex(item =>{
+    return item > 3
+});
+console.log(result);
+```
+

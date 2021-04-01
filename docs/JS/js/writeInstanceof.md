@@ -16,5 +16,8 @@ function myInstanceof(left, right) {
     left = left.__proto__
   }
 }
+
+console.log(myInstanceof("111", String)); //false
+console.log(myInstanceof(new String("111"), String));//true
 ```
 

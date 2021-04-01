@@ -187,6 +187,58 @@ console.log(bar.getName())
 1. 常驻内存，增加内存使用量。
 2. 使用不当会很容易造成内存泄露。
 
+### 表现形式
+
+1. 返回一个函数。刚刚已经举例。
+2. 作为函数参数传递
+
+```js
+var a = 1;
+function foo(){
+  var a = 2;
+  function baz(){
+    console.log(a);
+  }
+  bar(baz);
+}
+function bar(fn){
+  // 这就是闭包
+  fn();
+}
+// 输出2，而不是1
+foo();
+复制代码
+```
+
+3. 在定时器、事件监听、Ajax请求、跨窗口通信、Web Workers或者任何异步中，只要使用了回调函数，实际上就是在使用闭包。
+
+以下的闭包保存的仅仅是window和当前作用域。
+
+```js
+// 定时器
+setTimeout(function timeHandler(){
+  console.log('111');
+}，100)
+
+// 事件监听
+$('#app').click(function(){
+  console.log('DOM Listener');
+})
+复制代码
+```
+
+4. IIFE(立即执行函数表达式)创建闭包, 保存了`全局作用域window`和`当前函数的作用域`，因此可以全局的变量。
+
+```js
+var a = 2;
+(function IIFE(){
+  // 输出2
+  console.log(a);
+})();
+```
+
+
+
 ## 总结
 
 我们把通过作用域查找变量的链条称为作用域链；作用域链是通过词法作用域来确定的，而词法作用域反映了代码的结构。也通过作用域链解释了闭包。
