@@ -48,6 +48,13 @@ module.exports = {
         ]
       },
       {
+        text: '后端',
+        ariaLabel: 'backend',
+        items: [
+          {text: 'node 基础', link: '/backend/node/'},
+        ]
+      },
+      {
         text: '机器学习',
         ariaLabel: 'machineLearning',
         items: [
@@ -94,7 +101,8 @@ module.exports = {
       '/algorithm/dp/': getDP(),
       '/React/ReactBase/': getReactBase(),
       '/React/ReactExtend/': getReactExtend(),
-      '/Vue/VueBase/': getVueBase()
+      '/Vue/VueBase/': getVueBase(),
+      '/backend/node/': getNode()
     }
   }
 }
@@ -344,6 +352,20 @@ function getTS() {
         'type',
         'interface',
         'class'
+      ]
+    }
+  ]
+}
+
+function getNode() {
+  return [
+    {
+      title: 'node 基础',
+      children: [
+        'IO',
+        'nodeEvent',
+        'eventLoop',
+        'net'
       ]
     }
   ]

@@ -72,6 +72,22 @@ function onResolve(value){
 let x2 = x1.then(onResolve) // 返回值穿透到最外层
 ```
 
+### 错误冒泡
+
+```js
+readFilePromise('1.json').then(data => {
+    return readFilePromise('2.json');
+}).then(data => {
+    return readFilePromise('3.json');
+}).then(data => {
+    return readFilePromise('4.json');
+}).catch(err => {
+  // xxx
+})
+```
+
+这样前面产生的错误会一直向后传递，被 catch 接收到，就不用频繁地检查错误了。
+
 ## Promise 与微任务
 
 ```js
