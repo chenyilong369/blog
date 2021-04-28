@@ -105,7 +105,7 @@ module.exports = {
       '/algorithm/dp/': getDP(),
       '/React/ReactBase/': getReactBase(),
       '/React/ReactExtend/': getReactExtend(),
-      '/React/ReactApi':getReactApi(),
+      '/React/ReactApi/':getReactApi(),
       '/Vue/VueBase/': getVueBase(),
       '/backend/node/': getNode()
     }
