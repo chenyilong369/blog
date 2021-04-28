@@ -37,9 +37,15 @@
 
 处理程序可以设置在 HTML 中名为 `on<event>` 的特性（attribute）中。
 
+以这种方式指定的事件处理程序有一些特殊的地方。首先，会创建一个函数来封装属性的值。这个函数有一个特殊的局部变量 event，其中保存的就是 event 对象。
+
 ```html
 <input value="Click me" onclick="alert('Click!')" type="button">
 ```
+
+但是这种定义事件的方式会有些许问题。
+
+
 
 ### DOM
 

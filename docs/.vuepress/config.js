@@ -33,6 +33,10 @@ module.exports = {
               {
                 text: 'React扩展',
                 link: '/React/ReactExtend/'
+              },
+              {
+                text: 'React API',
+                link: '/React/ReactApi/'
               }
             ]
           },
@@ -101,6 +105,7 @@ module.exports = {
       '/algorithm/dp/': getDP(),
       '/React/ReactBase/': getReactBase(),
       '/React/ReactExtend/': getReactExtend(),
+      '/React/ReactApi':getReactApi(),
       '/Vue/VueBase/': getVueBase(),
       '/backend/node/': getNode()
     }
@@ -226,6 +231,9 @@ function getPerformance() {
       title: '性能',
       children: [
         'debounce',
+        'cache',
+        'SSR',
+        'picture'
       ]
     }
   ]
@@ -298,6 +306,19 @@ function getReactExtend() {
         'DVA',
         'Redux',
         'ReactRouter'
+      ]
+    }
+  ]
+}
+
+function getReactApi() {
+  return [
+    {
+      title: 'React Api',
+      children: [
+        'React',
+        'hook',
+        'tool'
       ]
     }
   ]
