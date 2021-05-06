@@ -219,7 +219,9 @@ function getCSS() {
         'style',
         'layout',
         'flex',
-        'Sass'
+        'Sass',
+        'css',
+        'Css3'
       ]
     }
   ]
@@ -305,7 +307,8 @@ function getReactExtend() {
       children: [
         'DVA',
         'Redux',
-        'ReactRouter'
+        'ReactRouter',
+        'writeReact'
       ]
     }
   ]
@@ -386,7 +389,10 @@ function getNode() {
         'IO',
         'nodeEvent',
         'eventLoop',
-        'net'
+        'net',
+        'someTools',
+        'someUse',
+        'path'
       ]
     }
   ]
