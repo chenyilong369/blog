@@ -47,6 +47,7 @@ if (options.devtool.includes("source-map")) {
     namespace: options.output.devtoolNamespace 
   }).apply(compiler); 
 }
+```
 
 devtool 的值匹配并非精确匹配，某个关键字只要包含在赋值中即可获得匹配，例如：'foo-eval-bar' 等同于 'eval'，'cheapfoo-source-map' 等同于 'cheap-source-map'。
 

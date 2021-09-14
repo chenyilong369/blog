@@ -16,6 +16,7 @@ module.exports = {
         text: '前端',
         ariaLabel: 'webDesign',
         items: [
+          {text: 'Babel', link: '/Babel/'},
           {text: 'CSS', link: '/CSS/'},
           {text: 'JS', link: '/JS/'},
           {text: 'TS', link: '/TS/'},
@@ -107,7 +108,8 @@ module.exports = {
       '/React/ReactExtend/': getReactExtend(),
       '/React/ReactApi/':getReactApi(),
       '/Vue/VueBase/': getVueBase(),
-      '/backend/node/': getNode()
+      '/backend/node/': getNode(),
+      '/Babel/': getBabel(),
     }
   }
 }
@@ -393,6 +395,17 @@ function getNode() {
         'someTools',
         'someUse',
         'path'
+      ]
+    }
+  ]
+}
+
+function getBabel() {
+  return [
+    {
+      title: 'Babel',
+      children: [
+        'BabelBase'
       ]
     }
   ]
