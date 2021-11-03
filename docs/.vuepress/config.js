@@ -24,6 +24,7 @@ module.exports = {
           {text: '浏览器', link: '/internet/'},
           {text: '性能', link: '/performance/'},
           {text: '技术杂谈', link: '/technology/'},
+          {text: '可视化', link: '/dataVisualization/'},
           {
             text: 'React', 
             items: [
@@ -49,7 +50,7 @@ module.exports = {
                 link: '/Vue/VueBase/'
               }
             ]
-          }
+          },
         ]
       },
       {
@@ -110,6 +111,7 @@ module.exports = {
       '/Vue/VueBase/': getVueBase(),
       '/backend/node/': getNode(),
       '/Babel/': getBabel(),
+      '/dataVisualization/': getDataVisualization(),
     }
   }
 }
@@ -184,6 +186,19 @@ function getHTTP() {
         'HTTP2',
         'HTTPS',
         'httpStorage'
+      ]
+    }
+  ]
+}
+
+function getDataVisualization() {
+  return [
+    {
+      title: 'dataVisualization',
+      children: [
+        'canvasCompress',
+        'introduce',
+        'theFirst'
       ]
     }
   ]
