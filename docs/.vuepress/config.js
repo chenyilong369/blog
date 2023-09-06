@@ -86,7 +86,8 @@ module.exports = {
         text:'leetcode',
         ariaLabel: 'leetcode',
         items: [
-          {text: '2021', link: '/leetcode/2021/'}
+          {text: '2021', link: '/leetcode/2021/'},
+          {text: '2023', link: '/leetcode/2023/'}
         ]
       },
       {text: 'Github', link: 'https://github.com/chenyilong369'}
@@ -104,6 +105,7 @@ module.exports = {
       '/technology/': getTechnology(),
       '/machineLearning/math/': getMachineLearningMath(),
       '/leetcode/2021/': getLeetcode2021(),
+      '/leetcode/2023/': getLeetcode2023(),
       '/algorithm/dp/': getDP(),
       '/React/ReactBase/': getReactBase(),
       '/React/ReactExtend/': getReactExtend(),
@@ -300,6 +302,17 @@ function getLeetcode2021() {
       title: '2021-03',
       children:[
         '03/03_01'
+      ]
+    }
+  ]
+}
+
+function getLeetcode2023() {
+  return [
+    {
+      title: '2023-09',
+      children:[
+        '09/09_06'
       ]
     }
   ]
